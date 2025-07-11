@@ -132,19 +132,27 @@ void List::suppElem(int val){
     }*/
 }
 
-void List::suppFirst(){
-    // Liste vide
-    if(_first==nullptr){
-        std::cout<<"Votre liste ne contien aucun element"<<std::endl;
-    }else{
-        //Creation de noeud temporaire et suppresoin de cel
-        Node* tmp;
-        tmp = _first;
-        _first = tmp->getNextNode();
-        delete(tmp);
-        
-        
+void List::suppFirst() {
+    Node *tmp;
+    Node *tmpdel;
+    // creation de noeud temporaire pour stoker ma variable
+    if (_first == nullptr) {
+        std::cout << "Votre liste ne contient aucun élément" << std::endl;
+        return;
     }
+    // Tete du noeud
+    tmpdel = _first;
+    // Noeud suivant
+    tmp =_first->getNextNode();
 
+    if(tmp!= nullptr){
+        std::cout<<" La valeur suivante est : "<<tmp->getValue()<<std::endl;
+    }else {
+        std::cout << " La valeur suivante est null " << std::endl;
+    }
+    // Suppression de la tete
+    delete tmpdel;
+    // Mise à jour de le tête de la liste.
+    _first=tmp;
 
 }
