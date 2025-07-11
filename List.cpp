@@ -111,25 +111,31 @@ void List::rangerList(){
     }
 }
 
-void List::suppElem(int val){
-    /*Node*courant= _first;
-    if(courant==nullptr){
-        std::cout<<"Votre liste est vide."<<std::endl;
-    }else{
-        while (courant->getNextNode()!=nullptr)
-        {
-            if(courant->getValue()==val){
-                courant->setValue(0);
-            }
-            if(courant->getNextNode()->getValue()==val){
-                courant->setNextNode(courant->getNextNode()->getNextNode());
-            }
-            if(courant->getNextNode()->getValue()==val && courant->getNextNode()->getNextNode()==nullptr)
-                courant->setNextNode(nullptr);
-            courant = courant->getNextNode();
+void List::suppElem(int val) {
+    // Noeud qui va stoker la valeur suivante
+    Node *nodeSuivant;
+    nodeSuivant = _first->getNextNode();
+    // liste Vide
+    if (_first == nullptr) {
+        std::cout << "Votre liste ne contient aucun élément" << std::endl;
+        return;
+    }
+    // sippression si valeur
+    if (_first->getValue() == val) {
+
+        delete (_first);
+        _first = nodeSuivant;
+    }
+    // Iteration jusau'a optention de la valeur a supprimer. ou passe au noeud suivant.
+    while (nodeSuivant->getNextNode()!= nullptr){
+        if(nodeSuivant->getValue()==val){
+            Node* tmp = nodeSuivant->getNextNode();
+            delete nodeSuivant;
+            nodeSuivant=tmp;
+        }else{
+            nodeSuivant = nodeSuivant->getNextNode();
         }
-        
-    }*/
+    }
 }
 
 void List::suppFirst() {
