@@ -10,7 +10,7 @@ public:
     // Constructeur
     Node(int val):_value(val),_nextNode(nullptr){}
     // Destructeur
-    ~Node(){delete _nextNode;}
+    ~Node(){/*delete _nextNode;*/}
     //Getter
     int getValue();
     Node * getNextNode();
