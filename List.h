@@ -5,7 +5,7 @@
 
 class List {
 protected:
-    //Tête de la list chainer 
+    //Tête de la list chainer
     Node* _first = nullptr;
 
     int longeurchaine(Node* courant);
@@ -15,15 +15,16 @@ public:
     List(): _first(nullptr){}
     ~List(){delete _first;}
 
-   // void ajoudDebut(int val);
-    //void ajoutFin(int val);
+    // void ajoudDebut(int val);
+    void ajoutFin(int val);
     int longeur();
     void affichage();
 
     void ajoutFinListe(int val,Node*courant = nullptr);
-    void ajoutDebut(int val);
+    void ajoutDebut(int val, Node*courant = nullptr);
     void rangerList();
-    void suppElem(int val);
+    void supp(int val);
+    void recherhe(int val);
     void suppFirst();
 };
 

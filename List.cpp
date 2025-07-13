@@ -13,42 +13,56 @@
 }*/
 /***
  * cette fonction permet d'ajouter une liste a la toute fin
- * pour cela creer de fonction un fonction ajoutefinliste qui a pour but de gerer dynamiquement 
+ * pour cela creer de fonction un fonction ajoutefinliste qui a pour but de gerer dynamiquement
  * le chagement des list
- * et la fonxtion public ajoutFon qui est utiliser par l'utilisateur 
+ * et la fonxtion public ajoutFon qui est utiliser par l'utilisateur
  */
 
+//void List::ajoutFinListe(int val,Node *courant){
+//
+//    if (_first == nullptr) {
+//        _first = new Node(val);
+//    } else {
+//        // Creation d'une liste si on est a la fin
+//        if (courant->getNextNode() == nullptr){
+//            Node* noeud = new Node(val);
+//            courant->setNextNode(noeud);
+//        } else {
+//            // Sinon on continue à parcourir la liste chainer
+//            ajoutFinListe(val, courant->getNextNode());
+//        }
+//    }
+//}
 void List::ajoutFinListe(int val,Node *courant){
-    //Liste null    
-    if(_first==nullptr){
-        _first= new Node(val);
+    if (_first == nullptr){
+        _first = new Node(val);
     }else{
-        // verifier aussi que la liste courant est null pas si oui je donne a mon noeud la tête de ma liste
-        if (courant==nullptr)
+        if (courant == nullptr)
         {
-            courant=_first;
+            courant = _first;
         }
-        while (courant->getNextNode()!= nullptr)
-        {
-            courant=courant->getNextNode();
+        while(courant->getNextNode() != nullptr){
+            courant = courant->getNextNode();
         }
-         Node *nouvlist = new Node(val);
+        Node* nouvlist = new Node(val);
         courant->setNextNode(nouvlist);
-
-        
     }
+
+
 }
 
+
+
 int List::longeurchaine(Node* courant) {
-     // Fin de la liste 
-    if (courant == nullptr) 
+    // Fin de la liste
+    if (courant == nullptr)
         return 0;
     else
         return 1 + longeurchaine(courant->getNextNode());
 }
 // Cette fonction retourn le taille de la liste en debutant de la tete.
 int List::longeur(){
-     return longeurchaine(_first);
+    return longeurchaine(_first);
 }
 void List::affichageliste(Node* courant) {
     if (courant == nullptr) return;
@@ -64,27 +78,23 @@ void List::affichage(){
 
 /*Cette fonction si dessous permet de dajouter un Nous au debut de la list*/
 
-void List::ajoutDebut(int val){
+void List::ajoutDebut(int val, Node* courant){
     // Voire si le liste des vide si oui creer une nouvelle liste
     if(_first == nullptr){
         _first=new Node(val);
     }else{
-        // Si le le liste courante est vide on la creer au cas echant 
-        // On la on cree un nouvelle liste que l'on ajout au debut 
-        
-        Node* nouvlist=new Node(val);
-        nouvlist->setNextNode(_first);
-        _first=nouvlist;
-        
+        // Si le le liste courante est vide on la creer au cas echant
+        // On la on cree un nouvelle liste que l'on ajout au debut
+
+            Node* nouvlist=new Node(val);
+            nouvlist->setNextNode(_first);
+            _first=nouvlist;
+
     }
-    
-    
 }
 void List::rangerList(){
-    // reation d'un variable pour l'arret d'itteration.
     bool echange= true;
     Node*courant= _first;
-    // les variable ou je stoke les valeurs a comparer
     int val1 =0;
     int val2=0;
     if(courant == nullptr){
@@ -97,7 +107,7 @@ void List::rangerList(){
             while (courant->getNextNode() != nullptr) {
                 val1 = courant->getValue();
                 val2 = courant->getNextNode()->getValue();
-                //echanger 
+
                 if (val1 > val2) {
                     courant->setValue(val2);
                     courant->getNextNode()->setValue(val1);
@@ -111,23 +121,20 @@ void List::rangerList(){
     }
 }
 
-void List::suppElem(int val) {
-    // Noeud qui va stoker la valeur suivante
-    Node *nodeSuivant;
-    nodeSuivant = _first->getNextNode();
-    // liste Vide
+void List::supp(int val) {
     if (_first == nullptr) {
         std::cout << "Votre liste ne contient aucun élément" << std::endl;
         return;
     }
-    // sippression si valeur
-    if (_first->getValue() == val) {
+    Node *courant = _first;
+    Node *suivant=_first->getNextNode();
 
+
+    if (_first->getValue() == val) {
         delete (_first);
-        _first = nodeSuivant;
+        _first = suivant;
     }
-    // Iteration jusau'a optention de la valeur a supprimer. ou passe au noeud suivant.
-    while (nodeSuivant->getNextNode()!= nullptr){
+   /* while (nodeSuivant->getNextNode()!= nullptr){
         if(nodeSuivant->getValue()==val){
             Node* tmp = nodeSuivant->getNextNode();
             delete nodeSuivant;
@@ -135,8 +142,22 @@ void List::suppElem(int val) {
         }else{
             nodeSuivant = nodeSuivant->getNextNode();
         }
+    }*/
+    while (suivant!= nullptr){
+        //std::cout<<"La valeur de _first avant le if est  :"<<_first->getValue()<<std::endl;
+        if(suivant->getValue()==val){
+
+            courant->setNextNode(suivant->getNextNode());
+            delete suivant;
+            //
+            suivant=courant->getNextNode();
+        }else{
+             courant = suivant;
+             suivant=suivant->getNextNode();
+        }
     }
 }
+
 
 void List::suppFirst() {
     Node *tmp;
@@ -161,4 +182,25 @@ void List::suppFirst() {
     // Mise à jour de le tête de la liste.
     _first=tmp;
 
+}
+
+void List::recherhe(int val) {
+    int compteur=0;
+    // Liste vide
+    if(_first== nullptr){
+        std::cout<<"Votre liste est vide."<<std::endl;
+    }
+    Node *courant = _first;
+    // iteration et recherche de l'existance de val
+    while (courant!= nullptr){
+        if( courant->getValue() == val ){
+            compteur++;
+            std::cout << "votre liste contient la valeur " << val << " et se repete " << compteur << " fois" << std::endl;
+        }
+        courant=courant->getNextNode();
+
+    }
+    if(compteur == 0){
+        std::cout<<"Votre liste ne contient pas la valeur "<<val<<std::endl;
+    }
 }
