@@ -93,17 +93,22 @@ void List::ajoutDebut(int val, Node* courant){
     }
 }
 void List::rangerList(){
+    // variable qui verifie si on echage ou pas.
     bool echange= true;
     Node*courant= _first;
+    // val1 et val2 permet de recuperer les deux variable successive
     int val1 =0;
     int val2=0;
+    // Liste vide
     if(courant == nullptr){
         std::cout<<"Vous n'avier pas d'element dans votre listes"<<std::endl;
     }
     else {
+
         while (echange) {
             courant= _first;
             echange= false;
+            // echage des valeur et parcours de la liste.
             while (courant->getNextNode() != nullptr) {
                 val1 = courant->getValue();
                 val2 = courant->getNextNode()->getValue();
@@ -122,19 +127,22 @@ void List::rangerList(){
 }
 
 void List::supp(int val) {
+    // Liste vide
     if (_first == nullptr) {
         std::cout << "Votre liste ne contient aucun élément" << std::endl;
         return;
     }
+    // initialisation du Noeud courant
     Node *courant = _first;
     Node *suivant=_first->getNextNode();
 
-
+    // Suppression de Noeud
     if (_first->getValue() == val) {
         delete (_first);
         _first = suivant;
     }
-   /* while (nodeSuivant->getNextNode()!= nullptr){
+   /* Mauvais logique sur quoi supprimer et sur qui pointer.
+    while (nodeSuivant->getNextNode()!= nullptr){
         if(nodeSuivant->getValue()==val){
             Node* tmp = nodeSuivant->getNextNode();
             delete nodeSuivant;
