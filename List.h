@@ -26,6 +26,8 @@ public:
     void supp(int val);
     void recherhe(int val);
     void suppFirst();
+    List* unionList(List*l1,List*l2);
+
 };
 
 #endif

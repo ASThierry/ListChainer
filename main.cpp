@@ -26,6 +26,19 @@ int main(){
     list->affichage();
     list->recherhe(14);
     list->recherhe(144);
+    List* l1;
+    l1->ajoutFin(1);
+    l1->ajoutFin(2);
+    l1->ajoutFin(3);
+    List* l2;
+    l2->ajoutFin(5);
+    l2->ajoutFin(6);
+    l2->ajoutFin(7);
 
+    List * ll;
+
+   ll=ll->unionList(l1,l2);
+
+   ll->affichage();
     return 0;
 }

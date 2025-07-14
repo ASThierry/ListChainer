@@ -212,3 +212,31 @@ void List::recherhe(int val) {
         std::cout<<"Votre liste ne contient pas la valeur "<<val<<std::endl;
     }
 }
+List* List::unionList(List*l1,List*l2){
+    // La liste l1 et l2 sont tous de vide
+    if(l1==nullptr && l2 == nullptr){
+        std::cout<<"Vos deux listes sont vides."<<std::endl;
+    }
+    // Cas ou l1 vide et l2 n'est vide ou inversement
+    if(l1==nullptr && l2!=nullptr ){
+        return l2;
+    }else{
+        return l1;
+    }
+    // creation de list d'union
+    List* lu;
+    while (l1->_first->getNextNode()!=nullptr)
+    {
+        lu->ajoutFin(l1->_first->getValue());
+        l1->_first = l1->_first->getNextNode();
+    }
+    while (l2->_first->getNextNode()!=nullptr)
+    {
+        lu->ajoutFin(l2->_first->getValue());
+        l2->_first = l2->_first->getNextNode();
+    }
+    
+    return lu;
+    
+    
+}
