@@ -13,7 +13,7 @@ protected:
 
 public:
     List(): _first(nullptr){}
-    ~List(){delete _first;}
+    ~List(){/*delete _first;*/}
 
     // void ajoudDebut(int val);
     void ajoutFin(int val);

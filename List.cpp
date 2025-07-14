@@ -212,6 +212,12 @@ void List::recherhe(int val) {
         std::cout<<"Votre liste ne contient pas la valeur "<<val<<std::endl;
     }
 }
+/*
+ *Cette fonction prend en paramettre de liste et fait leur union
+ * Pour cela je fais des cas quand les deux listes son vide ou quand l'un est vide et l'autre pas.
+ * Et dans l'autre cas je fais l'union en parcourant chaque liste et j'ajoute leur valeur dans une mouvelle liste que je renvoie l'utilisateur
+ *
+ * */
 List* List::unionList(List*l1,List*l2){
     // La liste l1 et l2 sont tous de vide
     if(l1==nullptr && l2 == nullptr){
@@ -220,23 +226,26 @@ List* List::unionList(List*l1,List*l2){
     // Cas ou l1 vide et l2 n'est vide ou inversement
     if(l1==nullptr && l2!=nullptr ){
         return l2;
-    }else{
+    }
+    if(l2==nullptr && l1!=nullptr ){
         return l1;
     }
     // creation de list d'union
-    List* lu;
-    while (l1->_first->getNextNode()!=nullptr)
+    List* lu= new List();
+    List* tmp;
+    tmp =l1;
+    while (l1->_first!=nullptr)
     {
-        lu->ajoutFin(l1->_first->getValue());
-        l1->_first = l1->_first->getNextNode();
+        lu->ajoutFinListe(tmp->_first->getValue());
+        tmp->_first = l1->_first->getNextNode();
     }
-    while (l2->_first->getNextNode()!=nullptr)
+    tmp =l2;
+    while (l2->_first!=nullptr)
     {
-        lu->ajoutFin(l2->_first->getValue());
-        l2->_first = l2->_first->getNextNode();
+        lu->ajoutFinListe(tmp->_first->getValue());
+        tmp->_first = l2->_first->getNextNode();
     }
     
     return lu;
-    
     
 }

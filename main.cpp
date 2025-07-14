@@ -26,19 +26,18 @@ int main(){
     list->affichage();
     list->recherhe(14);
     list->recherhe(144);
-    List* l1;
-    l1->ajoutFin(1);
-    l1->ajoutFin(2);
-    l1->ajoutFin(3);
-    List* l2;
-    l2->ajoutFin(5);
-    l2->ajoutFin(6);
-    l2->ajoutFin(7);
+    List* l1= new List();
+    l1->ajoutFinListe(1);
+    l1->ajoutFinListe(2);
+    l1->ajoutFinListe(3);
+    List* l2= new List();;
+    l2->ajoutFinListe(5);
+    l2->ajoutFinListe(6);
+    l2->ajoutFinListe(7);
+    List* ll= new List();;
 
-    List * ll;
+    ll=ll->unionList(l1,l2);
 
-   ll=ll->unionList(l1,l2);
-
-   ll->affichage();
+    ll->affichage();
     return 0;
 }
