@@ -26,18 +26,21 @@ int main(){
     list->affichage();
     list->recherhe(14);
     list->recherhe(144);
-    List* l1= new List();
+    List* l1 = new List();
     l1->ajoutFinListe(1);
     l1->ajoutFinListe(2);
     l1->ajoutFinListe(3);
-    List* l2= new List();;
-    l2->ajoutFinListe(5);
-    l2->ajoutFinListe(6);
+    l1->ajoutFinListe(7);
+    l1->ajoutFinListe(8);
+
+
+    List* l2 = new List();
+    l2->ajoutFinListe(2);
+    l2->ajoutFinListe(4);
     l2->ajoutFinListe(7);
-    List* ll= new List();;
-
-    ll=ll->unionList(l1,l2);
-
-    ll->affichage();
+    l2->ajoutFinListe(8);
+    List* inter = new List();
+    inter = inter->intersectList(l1,l2);
+    inter->affichage(); // Affiche 2 ?
     return 0;
 }

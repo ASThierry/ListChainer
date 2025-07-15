@@ -249,3 +249,35 @@ List* List::unionList(List*l1,List*l2){
     return lu;
     
 }
+
+List *List::intersectList(List *l1, List *l2) {
+    if(l1==nullptr && l2 == nullptr){
+        std::cout<<"Vos deux listes sont vides."<<std::endl;
+        return new List;
+    }
+    if(l1==nullptr || l2 == nullptr) {
+        std::cout << "Une liste est vide veuiller la remplire." << std::endl;
+        return new List;
+    }
+    List* ll=new List();
+    // Creation de noeud pour parcourir la liste 1 et 2
+    Node* tmp1;
+    Node* tmp2;
+    // initialisation du noeud sur la tete de la liste 1
+    tmp1 =l1->_first;
+    while (tmp1 != nullptr){
+        // initialisation du noeud sur la tete de la liste 2 et la suite de la liste.
+        tmp2 =l2->_first;
+        while (tmp2!= nullptr){
+            // Verifier si les deux liste on des valeur en Commun.
+            if(tmp1->getValue() == tmp2->getValue()){
+                ll->ajoutFinListe(tmp1->getValue());
+            }
+            // Allez au noeud suivant
+            tmp2 = tmp2->getNextNode();
+        }
+        // Allez au noeud suivant
+        tmp1= tmp1->getNextNode();
+    }
+    return ll;
+}
