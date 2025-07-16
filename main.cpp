@@ -19,20 +19,15 @@ int main(){
     std::cout<<""<<list->longeur()<<std::endl;
     list->rangerList();
     list->affichage();
-    list->suppFirst();
-    list->suppFirst();
-    list->affichage();
-    list->supp(47);
-    list->affichage();
-    list->recherhe(14);
-    list->recherhe(144);
     List* l1 = new List();
     l1->ajoutFinListe(1);
     l1->ajoutFinListe(2);
     l1->ajoutFinListe(3);
     l1->ajoutFinListe(7);
     l1->ajoutFinListe(8);
-
+    list->unionList(l1);
+    std::cout<<" Afficage de la fusion de list et l1."<<std::endl;
+    list->affichage();
 
     List* l2 = new List();
     l2->ajoutFinListe(2);
@@ -40,7 +35,8 @@ int main(){
     l2->ajoutFinListe(7);
     l2->ajoutFinListe(8);
     List* inter = new List();
-    inter = inter->intersectList(l1,l2);
-    inter->affichage(); // Affiche 2 ?
+    std::cout<<" Afficage de l'intersection de deux listes."<<std::endl;
+    inter = l1->intersectList(l2);
+    inter->affichage(); 
     return 0;
 }

@@ -216,9 +216,9 @@ void List::recherhe(int val) {
  *Cette fonction prend en paramettre de liste et fait leur union
  * Pour cela je fais des cas quand les deux listes son vide ou quand l'un est vide et l'autre pas.
  * Et dans l'autre cas je fais l'union en parcourant chaque liste et j'ajoute leur valeur dans une mouvelle liste que je renvoie l'utilisateur
- *
+ *cette fonction est plus une fonction c que c++
  * */
-List* List::unionList(List*l1,List*l2){
+/*List* List::unionList(List*l1,List*l2){
     // La liste l1 et l2 sont tous de vide
     if(l1==nullptr && l2 == nullptr){
         std::cout<<"Vos deux listes sont vides."<<std::endl;
@@ -248,9 +248,9 @@ List* List::unionList(List*l1,List*l2){
     
     return lu;
     
-}
+}*/
 
-List *List::intersectList(List *l1, List *l2) {
+/* List *List::intersectList(List *l1, List *l2) {
     if(l1==nullptr && l2 == nullptr){
         std::cout<<"Vos deux listes sont vides."<<std::endl;
         return new List;
@@ -268,6 +268,56 @@ List *List::intersectList(List *l1, List *l2) {
     while (tmp1 != nullptr){
         // initialisation du noeud sur la tete de la liste 2 et la suite de la liste.
         tmp2 =l2->_first;
+        while (tmp2!= nullptr){
+            // Verifier si les deux liste on des valeur en Commun.
+            if(tmp1->getValue() == tmp2->getValue()){
+                ll->ajoutFinListe(tmp1->getValue());
+            }
+            // Allez au noeud suivant
+            tmp2 = tmp2->getNextNode();
+        }
+        // Allez au noeud suivant
+        tmp1= tmp1->getNextNode();
+    }
+    return ll;
+}*/
+
+
+void List::unionList(List* other){
+    // Verification si la liste other(list que l'on veux ajouter a la liste actuel) est vide 
+    if(other == nullptr){
+        std::cout<<"Votre liste que vous voulez ajouter est vide veuille la replire svp."<<std::endl;
+    }
+    // creation de list d'union
+    
+    List* tmp;
+    tmp = other;
+    while (other->_first!=nullptr)
+    {
+        this->ajoutFinListe(tmp->_first->getValue());
+        tmp->_first = other->_first->getNextNode();
+    }
+    
+    
+}
+
+List* List::intersectList(List *other) {
+    if(other ==nullptr && this->_first == nullptr){
+        std::cout<<"Vos deux listes sont vides."<<std::endl;
+    }
+    if(other ==nullptr ) {
+        std::cout << "Votre liste other est vide." << std::endl;
+        
+    }
+    List* ll=new List();
+    // Creation de noeud pour parcourir la liste 1 et 2
+    Node* tmp1;
+    Node* tmp2;
+    // initialisation du noeud sur la tete de la liste 1
+    tmp1 =this->_first;
+    while (tmp1 != nullptr){
+        // initialisation du noeud sur la tete de la liste 2 et la suite de la liste.
+        tmp2 =other->_first;
         while (tmp2!= nullptr){
             // Verifier si les deux liste on des valeur en Commun.
             if(tmp1->getValue() == tmp2->getValue()){

@@ -26,8 +26,10 @@ public:
     void supp(int val);
     void recherhe(int val);
     void suppFirst();
-    List* unionList(List*l1,List*l2);
-    List* intersectList(List*l1,List*l2);
+   //List* unionList(List*l1,List*l2);
+    void unionList(List* other);
+   //List* intersectList(List*l1,List*l2);
+    List* intersectList(List *other);
 
 
 };
