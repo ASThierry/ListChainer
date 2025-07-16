@@ -302,21 +302,25 @@ void List::unionList(List* other){
 }
 
 List* List::intersectList(List *other) {
+    // Cas ou est deux liste son vide
     if(other ==nullptr && this->_first == nullptr){
         std::cout<<"Vos deux listes sont vides."<<std::endl;
+         return new List();
     }
-    if(other ==nullptr ) {
-        std::cout << "Votre liste other est vide." << std::endl;
-        
+    // cas ou une des liste son vide
+    if(other ==nullptr || this->_first ==nullptr) {
+        std::cout << "Une des deux listes est vide." << std::endl;
+        return new List();
     }
+    
     List* ll=new List();
-    // Creation de noeud pour parcourir la liste 1 et 2
+    // Creation de noeud pour parcourir la liste other et de la list actuelle
     Node* tmp1;
     Node* tmp2;
-    // initialisation du noeud sur la tete de la liste 1
+    // initialisation du noeud de la tete de la list actuelle
     tmp1 =this->_first;
     while (tmp1 != nullptr){
-        // initialisation du noeud sur la tete de la liste 2 et la suite de la liste.
+        // initialisation du noeud sur la tete de la liste other
         tmp2 =other->_first;
         while (tmp2!= nullptr){
             // Verifier si les deux liste on des valeur en Commun.
